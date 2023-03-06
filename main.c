@@ -76,7 +76,7 @@ DLLEXPORT void plecsOutput(struct SimulationState* aState)
 
 		
 	//OUTPUT
-	aState->outputs[0] = Duty;
+	aState -> outputs[0] = Duty;
 	
 	// aState->outputs[n] = x ;
 	
