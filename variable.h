@@ -90,12 +90,6 @@
 #define	K_BPF		3
 #define	K_NOTCH		4
 
-
-
-
-#define MOT_ROTEM 0
-#define MOT_IPM 1
-
 //////// Edit this to use corresponding parameters /////////
 #define MOT_TYPE MOT_ROTEM
 ////////////////////////////////////////////////////////////
