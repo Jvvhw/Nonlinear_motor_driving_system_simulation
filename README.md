@@ -29,7 +29,7 @@
   <li><b>Data2plot.py</b> - visualization voltage, duty, current data files from simulation</li>
   <li><b>main.c</b> - DLL code for running plecs simulation</li>
   <li><b>variable.h</b> - variable for main.c and general purpose define</li>
-  <li><b>.plecs</b> - S/W based simulation</li>
+  <li><b>.plecs</b> - S/W based simulation -> MG set simulation</li>
 </ul>
 
 <h3>References</h3>
