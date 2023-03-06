@@ -91,7 +91,6 @@
 #define	K_NOTCH		4
 
 //////// Edit this to use corresponding parameters /////////
-#define MOT_TYPE MOT_ROTEM
 ////////////////////////////////////////////////////////////
 
 //Parameters
