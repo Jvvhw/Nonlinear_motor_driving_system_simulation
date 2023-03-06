@@ -37,7 +37,7 @@ Vp_list = convert_to_floats(tmp_list)
 x_Vp = [round(i[0],2) for i in Vp_list] #시간, 0.01초 단위
 y_Vp = [round(i[1],2) for i in Vp_list] 
 
-for i in range(len(y_Vp)): # period average block 특성상 정확히 Duty가 바뀌는 지점에서는 Tsamp만큼의 딜레이가 발생함으로 0.01초 뒤의 값과 똑같이 맞춰준다.
+for i in range(len(y_Vp)): # period average block 특성상 정확히 Duty가 바뀌는 지점에서는 Tsamp만큼의 딜레이가 발생함으로 0.01초 뒤의 값과 똑같이 맞춰
     if i > 95: break
 
     elif i % 5 == 0:
@@ -58,10 +58,6 @@ plt.plot(x_Vp[5:95],Vp_error[5:95],label = 'Vp_error')
 plt.xlabel('Time')
 plt.legend()
 plt.show()
-
-
-
-
 
 
 
