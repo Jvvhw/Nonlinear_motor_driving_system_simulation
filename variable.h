@@ -120,7 +120,6 @@ float Time_10;
 float MIN_TIME;
 
 //Inverter
-float Is_rated = 10.;
 int PWM_mode_set = 0;
 
 float Vdc_load;
