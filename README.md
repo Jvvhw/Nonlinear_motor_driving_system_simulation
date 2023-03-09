@@ -12,7 +12,7 @@
 
  - ANN(artificial-neural-network) has a degree of freedom in setting input/output signals, so it is suitable for implementing nonlinear system. 
 
- - Therefore, an analysis of the factors that affect voltage output in existing inverter systems (power electronics) should take precedence, and a comprehensive understanding and utilization of deep learning theory is necessary.
+ - Therefore, it is important to prioritize the analysis of factors that affect voltage output in existing inverter systems (power electronics), and to have a comprehensive understanding and effective utilization of deep learning theory.
 
  - In this project, the inverter output voltage of the motor drive system will be simulated with ANN.
 
