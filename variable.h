@@ -90,7 +90,14 @@
 #define	K_BPF		3
 #define	K_NOTCH		4
 
+
+
+
+#define MOT_ROTEM 0
+#define MOT_IPM 1
+
 //////// Edit this to use corresponding parameters /////////
+#define MOT_TYPE MOT_ROTEM
 ////////////////////////////////////////////////////////////
 
 //Parameters
@@ -111,11 +118,19 @@ float Duty;
 float Time;
 float Time_10;
 float MIN_TIME;
+float prev_duty;
+float step_size = 0.05;
+
+//Integral Control
+int Integral_Signal;
+int Integral_Reset;
 
 //Inverter
+float Is_rated = 10.;
 int PWM_mode_set = 0;
 
 float Vdc_load;
+float Vp_avg;
 float Vdc_source;
 float INV_Vdc_load;
 float INV_Vdc_source;
