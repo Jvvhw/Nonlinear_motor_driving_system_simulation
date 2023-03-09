@@ -4,6 +4,10 @@
 
 void SignalGenerator() {			   
 	Time_10 = 0;
+	Integral_Reset = 0;
+	Integral_Signal = 0;
+	prev_duty = 0;
+	Vp_avg = 0;
 }
 
 void InitController() {			   
@@ -53,30 +57,35 @@ DLLEXPORT void plecsOutput(struct SimulationState* aState)
 
 	// Duty making
 	if (INV_on) {
-		Time += Tsamp;
-		Time_10 = 10 * Time;
-		if ((Time_10 - floor(Time_10)) < 0.5) {
-			Duty = floor(Time_10) * 0.1;
+		Time += Tsamp;   
+		prev_duty = Duty;   
+
+		if (Time - Duty > step_size) {   
+			Duty += step_size;   
+			if (prev_duty != Duty) {   
+				Integral_Reset = 1;   
+			}
 		}
-		else if ((Time_10 - floor(Time_10)) >= 0.5) {
-			Duty = (floor(Time_10) * 0.1)+0.05;
+		else {   
+			Integral_Reset = 0;  
 		}
 
-		if (Duty < 0.05) {
-			Duty = 0;
+		if ((Time - Duty > 0.01) && (Time - Duty < 0.04)) {
+			Integral_Signal = 1;
 		}
-		else if (Duty > 0.95) {
-			Duty = 1;
+		else {
+			Integral_Signal = 0;
 		}
+
 	}
 	else {
 		Duty = 0.5;
 	}
 
-
-		
 	//OUTPUT
-	aState -> outputs[0] = Duty;
+	aState->outputs[0] = Duty;
+	aState->outputs[1] = Integral_Signal;
+	aState->outputs[2] = Integral_Reset;
 	
 	// aState->outputs[n] = x ;
 	
