@@ -28,36 +28,36 @@ def convert_to_floats(matrix):
 tmp_list = fileopen('Duty.csv')
 Duty_list = convert_to_floats(tmp_list)
 
-x_Duty = [round(i[0],2) for i in Duty_list] #시간, 0.01초 단위
-y_Duty = [round(i[1],2) for i in Duty_list]
+x_Duty = []
+x_Duty = [round(Duty_list[i][0],3) for i in range(9,len(Duty_list),10)] # 시간, 0.01초 단위
+y_Duty = [round(Duty_list[i][1],3) for i in range(9,len(Duty_list),10)] # duty
 
 tmp_list = fileopen('Vpdata_I=0.csv')
 Vp_list = convert_to_floats(tmp_list)
 
-x_Vp = [round(i[0],2) for i in Vp_list] #시간, 0.01초 단위
-y_Vp = [round(i[1],2) for i in Vp_list] 
+x_Vp = [round(Vp_list[i][0],3) for i in range(9,len(Vp_list),10)] 
+y_Vp = [round(Vp_list[i][1],3) for i in range(9,len(Vp_list),10)] #Vp_avg
 
-for i in range(len(y_Vp)): # period average block 특성상 정확히 Duty가 바뀌는 지점에서는 Tsamp만큼의 딜레이가 발생함으로 0.01초 뒤의 값과 똑같이 맞춰
-    if i > 95: break
-
-    elif i % 5 == 0:
-        y_Vp[i] = y_Vp[i+1]
 
 Ideal_Vp = []
 Vp_error = []
 
 for i in range(len(y_Duty)):
-    Ideal_Vp.append(Vdc*(y_Duty[i] - 0.5))
-    Vp_error.append(y_Vp[i]-Ideal_Vp[i])
+    Ideal_Vp.append(Vdc*(y_Duty[i] - 0.5)) # duty에 따른 이상적인 Vp 계산
+    Vp_error.append(y_Vp[i]-Ideal_Vp[i])   # 실제 Vp와의 차이를 모두 계산
 
-
-#plt.scatter(x_Duty[5:95],y_Duty[5:95],label = 'Duty')
-plt.scatter(x_Vp[5:95],Ideal_Vp[5:95],label = 'Vp_Ideal')
-plt.scatter(x_Vp[5:95],y_Vp[5:95],label = 'Vp_avg')
-plt.plot(x_Vp[5:95],Vp_error[5:95],label = 'Vp_error')
+    
+#plt.scatter(x_Duty,y_Duty,label = 'Duty')
+plt.scatter(x_Vp,Ideal_Vp,label = 'Vp_Ideal')
+plt.scatter(x_Vp,y_Vp,label = 'Vp_avg')
+plt.plot(x_Vp,Vp_error,label = 'Vp_error')
 plt.xlabel('Time')
 plt.legend()
 plt.show()
+
+
+
+
 
 
 
